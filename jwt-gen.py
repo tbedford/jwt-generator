@@ -17,7 +17,6 @@ app_id = os.getenv("APP_ID")
 private_key_file = os.getenv("PRIVATE_KEY_FILE")
 private_key = read_file(private_key_file)
 exp = os.getenv("EXPIRY")
-exp = int(exp)
 sub = os.getenv("SUB")
 acl = os.getenv("ACL")
 
@@ -27,9 +26,11 @@ def build_payload (application_id,  **kwargs):
     payload['iat'] = int(time.time())
     payload['jti'] = str(uuid4())
     if "exp" in kwargs:
-        payload['exp'] = int(time.time()) + kwargs.pop('exp')
-    else:
-        payload['exp'] = int(time.time()) + (15*60) # default to 15 minutes
+        exp = kwargs.pop('exp')
+        if exp:
+            payload['exp'] = int(time.time()) + int(exp)
+        else:
+            payload['exp'] = int(time.time()) + (15*60) # default to 15 minutes
     for k in kwargs:
         if kwargs[k]:
             if k == 'acl':
