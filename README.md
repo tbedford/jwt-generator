@@ -1,5 +1,7 @@
 # jwt-generator
 
+**STATUS:** Partially working.
+
 A command-line tool for generating JWTs.
 
 The key point is JWT generation is driven by a `.env` file. This saves a lot of copying pasting (of APP_ID for example) and escaping on the command line.
