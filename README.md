@@ -46,7 +46,7 @@ Not ideal, but you can just copy and paste the JWT output to wherever it needs t
 * For Nexmo work (which is primarily what I'm using this for) you don't need ACL and SUB unless you are authenticating users into the Client SDK.
 * Expiry is handled this way: if you specify an expiry (I usually set 24 hours for testing convenience) it will be heeded.If it's not specified it will be set to the default of 15 minutes.
 * ACL. If you look at valid ACLs for working with Nexmo Client SDK in https://jwt.io you will see they are a JSON object. For this reason I have to convert this from a JSON-type string to a Python object with `json.loads()` - you then have a Python dictionary (`print(type(payload['acl']))`) and `jwt.encode` does the right thing.
-* When printing out the JWT it's actually a byte string after encoding, so you need to decode that for the real world using `str.decode()`. I use the ASCII encoding because ASCII chars should cover the range of chars in a JWT (base64 encoded data is a string of characters that only contains `a-z`, `A-Z`, `0-9`, `+` and `/`). 
+* When printing out the JWT it's actually a byte string after encoding, so you need to decode that for the real world using `str.decode()`. I use the ASCII encoding because ASCII chars should cover the range of chars in a JWT (base64url encoded data is a string of characters that only contains `a-z`, `A-Z`, `0-9`, `-` and `_`). 
 
 ## TODO
 
