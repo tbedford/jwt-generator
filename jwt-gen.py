@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
 import os
 import jwt
-import json
 import time
 from uuid import uuid4
 from dotenv import load_dotenv
-import requests
 
 def read_file(filename):
     f = open (filename, mode='r', encoding='utf-8')
