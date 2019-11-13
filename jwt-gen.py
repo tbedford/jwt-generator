@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os
 import jwt
 import json
@@ -28,16 +29,13 @@ def build_payload (application_id,  **kwargs):
     if "exp" in kwargs:
         payload['exp'] = int(time.time()) + kwargs.pop('exp')
     else:
-        payload['exp'] = int(time.time()) + 15*60
+        payload['exp'] = int(time.time()) + (15*60) # default to 15 minutes
     for k in kwargs:
-        payload[k] = kwargs[k]
+        if kwargs[k]:
+            payload[k] = kwargs[k]
     return payload
 
-payload = build_payload(app_id, exp=exp)
+payload = build_payload(app_id, exp=exp, sub=sub, acl=acl) # Add optional custom claims as required
 token = jwt.encode(payload, private_key, algorithm='RS256')
-
-# Testing - Then make a call - retrieve info for all calls https://api.nexmo.com/v1/calls
-auth = b'Bearer ' + token
-headers = {'Authorization': auth, 'Content-Type': 'application/json'}
-r = requests.get('https://api.nexmo.com/v1/calls', headers=headers)
-print(r.status_code)
+j = token.decode(encoding='ascii') # Convert byte string to printable string
+print(j)
