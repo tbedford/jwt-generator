@@ -29,4 +29,8 @@ EXPIRY=38400
 
 You can configure the `.env` file with other claims such as `SUB` and `ACL` (for Client SDK apps). They will automagically be added to the JWT payload.
 
+## TODO
 
+- [x] Tested with Voice app
+- [ ] Tested `sub` and `acl` with RTC apps
+- [ ] Tested with Messages and Dispatch apps
