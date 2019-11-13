@@ -1,0 +1,7 @@
+APP_ID="7ffb050a-121e-4a67-94b8-8301a7e4163d"
+PRIVATE_KEY_FILE="private.key"
+EXPIRY=38400
+
+# For Client SDK tokens to authenticate users only
+#SUB=<username>
+#ACL='{"paths": {"/*/users/**": {},"/*/conversations/**": {},"/*/sessions/**": {},"/*/devices/**": {},"/*/image/**": {},"/*/media/**": {},"/*/applications/**": {},"/*/push/**": {},"/*/knocking/**": {}}}'
